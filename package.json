@@ -1,7 +1,7 @@
 {
   "name": "hubot-github-templated-issues",
   "description": "A way to create a github issue from template",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Shintaro Kojima <goodies@codeout.net>",
   "license": "MIT",
 
@@ -9,14 +9,17 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/hubot-github-templated-issues.git"
+    "url": "git://github.com/codeout/hubot-github-templated-issues.git"
   },
 
   "bugs": {
-    "url": "https://github.com/hubot-scripts/hubot-github-templated-issues/issues"
+    "url": "https://github.com/codeout/hubot-github-templated-issues/issues"
   },
 
   "dependencies": {
+    "ect": "*",
+    "githubot": "*",
+    "js-yaml": "*"
   },
 
   "peerDependencies": {
