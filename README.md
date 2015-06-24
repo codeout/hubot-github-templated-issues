@@ -49,6 +49,7 @@ Specify GitHub repository where you want to create an issue. When this variable 
 ### Template Hint
 
 Push issue templates to GitHub repository(```TEMPLATE_GITHUB_REPO```) wherever you want.
+Template engine is [ECT](http://ectjs.com/).
 
 :warning: Template file needs to have a suffix ```.ect```.
 
