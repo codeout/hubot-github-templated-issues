@@ -1,10 +1,10 @@
 # Description
-#   A way to create a github issue from template
+#   A way to create a github issue from template via hubot
 #
 # Configuration:
 #   HUBOT_GITHUB_TOKEN - GitHub personal access token which hubot uses
 #   TEMPLATE_GITHUB_REPO - GitHub repository for templates (eg: user/repo)
-#   ISSUE_GITHUB_REPO - GitHub repository where hubot creates an issue (eg: user/repo)
+#   ISSUE_GITHUB_REPO - (Optional) GitHub repository where hubot creates an issue (eg: user/repo)
 #
 # Commands:
 #   hubot issue create <path> <title>\n<yaml data> - Create a github issue with template and data
