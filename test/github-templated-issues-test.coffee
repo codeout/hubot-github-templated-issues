@@ -23,7 +23,6 @@ describe 'github-templated-issues', ->
       @robot = new Robot(null, 'mock-adapter', false)
 
       @robot.adapter.on 'connected', =>
-        delete require.cache[require.resolve(src)]
         process.env.TEMPLATE_GITHUB_REPO = template_github_repo
         delete process.env.ISSUE_GITHUB_REPO
         require(src)(@robot)
@@ -123,8 +122,8 @@ describe 'github-templated-issues', ->
       @robot = new Robot(null, 'mock-adapter', false)
 
       @robot.adapter.on 'connected', =>
-        delete require.cache[require.resolve(src)]
         delete process.env.TEMPLATE_GITHUB_REPO
+        delete process.env.ISSUE_GITHUB_REPO
         require(src)(@robot)
         @user = @robot.brain.userForId('1', name: 'codeout', room: '#myroom')
         @adapter = @robot.adapter
@@ -178,7 +177,6 @@ describe 'github-templated-issues', ->
       @robot = new Robot(null, 'mock-adapter', false)
 
       @robot.adapter.on 'connected', =>
-        delete require.cache[require.resolve(src)]
         process.env.TEMPLATE_GITHUB_REPO = template_github_repo
         process.env.ISSUE_GITHUB_REPO = 'codeout/nothing'
         require(src)(@robot)
