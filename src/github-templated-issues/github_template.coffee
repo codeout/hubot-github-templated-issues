@@ -3,7 +3,9 @@ ect = require('ect')
 class GithubTemplate
   env_error: 'environment variable is not configured: "TEMPLATE_GITHUB_REPO"'
 
-  constructor: (@githubot) ->
+  constructor: (error_handler) ->
+    @githubot = require('githubot')
+    @githubot.logger.error = error_handler
 
   options: ->
     repository: process.env.TEMPLATE_GITHUB_REPO

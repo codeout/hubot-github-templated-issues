@@ -4,7 +4,9 @@ class GithubIssue
 
   env_error: 'environment variable is not configured: "ISSUE_GITHUB_REPO"'
 
-  constructor: (@githubot, @title, @body) ->
+  constructor: (error_handler, @title, @body) ->
+    @githubot = require('githubot')
+    @githubot.logger.error = error_handler
 
   create: (callback) ->
     return callback(@env_error) unless @options().repository

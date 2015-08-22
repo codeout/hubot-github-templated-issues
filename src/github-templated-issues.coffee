@@ -16,7 +16,6 @@
 # Author:
 #   Shintaro Kojima <goodies@codeout.net>
 
-githubot = require('githubot')
 yaml = require('js-yaml')
 GithubTemplate = require('./github-templated-issues/github_template')
 GithubIssue = require('./github-templated-issues/github_issue')
@@ -24,7 +23,7 @@ GithubIssue = require('./github-templated-issues/github_issue')
 
 module.exports = (robot) ->
   define_error_handler = (msg) ->
-    githubot.logger.error = (error) ->
+    (error) ->
       msg.send "ERROR: #{error}"
       msg.robot.logger.error(error)
 
@@ -33,11 +32,11 @@ module.exports = (robot) ->
 
     try
       data = yaml.safeLoad(msg.match.input.replace(/.*/, ''))
-      template = new GithubTemplate(githubot)
+      template = new GithubTemplate(error_handler)
 
       template.render msg.match[1], data, (error, result) ->
         return error_handler(error) if error
-        issue = new GithubIssue(githubot, msg.match[2], result)
+        issue = new GithubIssue(error_handler, msg.match[2], result)
 
         issue.create (error, created) ->
           return error_handler(error) if error
@@ -49,7 +48,7 @@ module.exports = (robot) ->
   robot.respond /issue\s+(repo|repository)\s+from/i, (msg) ->
     error_handler = define_error_handler(msg)
 
-    template = new GithubTemplate(githubot)
+    template = new GithubTemplate(error_handler)
     template.repo_url (error, url) ->
       return error_handler(error) if error
       msg.send url
@@ -57,7 +56,7 @@ module.exports = (robot) ->
   robot.respond /issue\s+(repo|repository)\s+to/i, (msg) ->
     error_handler = define_error_handler(msg)
 
-    issue = new GithubIssue(githubot)
+    issue = new GithubIssue(error_handler)
     issue.repo_url (error, url) ->
       return error_handler(error) if error
       msg.send url
@@ -65,7 +64,7 @@ module.exports = (robot) ->
   robot.respond /issue\s+templates\s+(\S+)/i, (msg) ->
     error_handler = define_error_handler(msg)
 
-    template = new GithubTemplate(githubot)
+    template = new GithubTemplate(error_handler)
     template.list msg.match[1], (error, paths) ->
       return error_handler(error) if error
       msg.send paths.join("\n")
@@ -73,7 +72,7 @@ module.exports = (robot) ->
   robot.respond /issue\s+template\s+(\S+)/i, (msg) ->
     error_handler = define_error_handler(msg)
 
-    template = new GithubTemplate(githubot)
+    template = new GithubTemplate(error_handler)
     template.info msg.match[1], (error, info) ->
       return error_handler(error) if error
       msg.send info
