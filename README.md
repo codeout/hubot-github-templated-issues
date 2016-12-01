@@ -39,7 +39,7 @@ See [githubot document](https://github.com/iangreenleaf/githubot) on which this 
 
 Specify GitHub repository having issue templates. (eg: user/repo)
 
-### ```ISSUE_GITHUB_REPO``` (Optinal)
+### ```ISSUE_GITHUB_REPO``` (Optional)
 
 Specify GitHub repository where you want to create an issue. When this variable is omitted, ```TEMPLATE_GITHUB_REPO``` will be used instead.
 
